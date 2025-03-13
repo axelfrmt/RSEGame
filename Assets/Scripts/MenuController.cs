@@ -4,17 +4,21 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    public static string selectedCharacter = "Base";
+    public static string selectedCharacter = "None";
     public GameObject baseCharacter;
     public GameObject otherCharacter;
 
+    public GameObject selectBaseCharacter;
+    public GameObject selectOtherCharacter;
+    
     public GameObject choiceCharacter;
 
     void Start()
     {
         if (baseCharacter != null && otherCharacter != null)
         {
-            UpdateCharacterSelection(selectedCharacter);
+            baseCharacter.SetActive(true);
+            otherCharacter.SetActive(true);
         }
     }
 
@@ -32,8 +36,19 @@ public class MenuController : MonoBehaviour
 
     private void UpdateCharacterSelection(string character)
     {
-        baseCharacter.SetActive(character == "baseCharacter");
-        otherCharacter.SetActive(character == "otherCharacter");
+        if (character == "baseCharacter")
+        {
+            baseCharacter.SetActive(character == "baseCharacter");
+            selectBaseCharacter.SetActive(true);
+            selectOtherCharacter.SetActive(false);
+        }
+        else if (character == "otherCharacter")
+        {
+            otherCharacter.SetActive(character == "baseCharacter");
+            selectBaseCharacter.SetActive(false);
+            selectOtherCharacter.SetActive(true);
+        }
+
         choiceCharacter.SetActive(false);
     }
 
