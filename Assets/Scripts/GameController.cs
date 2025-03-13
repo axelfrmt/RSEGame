@@ -2,6 +2,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int PositiveScoreValue;
     [HideInInspector] public int NegativeScoreValue;
     [HideInInspector] public float WordSpeed;
+    [HideInInspector] public bool Finished;
     public int Score = 150;
     public int PercentageToCritical;
     public int ScoreMax = 300;
@@ -36,15 +38,22 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _updateTimer();
-        _difficultyManagement();
+        if(!Finished){
+            _updateTimer();
+            _difficultyManagement();
+        }
     }
 
     private void _updateTimer(){
         _timer += Time.deltaTime;
         if(_timer > Duration){
-            Debug.Log("FIN DE PARTIE");
+            Finished = true;
+            UIManager.SwitchToFinish();
         }
+    }
+
+    public void Restart(){
+        SceneManager.LoadScene(0);
     }
 
     private void _difficultyManagement(){
@@ -105,8 +114,10 @@ public class GameController : MonoBehaviour
 
         int percentage = Mathf.RoundToInt(((float)Score/ScoreMax)*100f);
 
-        if(scoreToApply < 0)
-            Camera.main.GetComponent<ScreenShake>().StartShake(0.2f, 0.2f);
+        if(scoreToApply < 0){
+            foreach(Camera cam in Camera.allCameras)
+                cam.GetComponent<ScreenShake>().StartShake(0.2f, 0.2f);
+        }
         if(percentage < PercentageToCritical)
             ApplyCriticalPostProcess();
         else

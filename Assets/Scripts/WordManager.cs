@@ -21,9 +21,11 @@ public class WordManager : MonoBehaviour
     }
     
     void Update(){
-        _timer+=Time.deltaTime;
-        if(_timer>_gameController.MinTimeBetweenEachWord && Random.Range(0,5) > 2)
-            _spawnWord();
+        if(!_gameController.Finished){
+            _timer+=Time.deltaTime;
+            if(_timer>_gameController.MinTimeBetweenEachWord && Random.Range(0,5) > 2)
+                _spawnWord();
+        }
     }
 
 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class UImanager : MonoBehaviour
 {
     [Header("--- REFERENCES ---")]
+    public GameObject HUD;
+    public GameObject FINISH;
+
     public Image IconeTeam;
     public TextMeshProUGUI ScoreBox;
     public TextMeshProUGUI TimeBox;
@@ -24,6 +27,11 @@ public class UImanager : MonoBehaviour
     void Update()
     {
         _displayTime();
+    }
+
+    public void SwitchToFinish(){
+        HUD.SetActive(false);
+        FINISH.SetActive(true);
     }
 
     public void RefreshScore(){

@@ -20,7 +20,8 @@ public class Word : MonoBehaviour
 
     void Update()
     {
-        _move();
+        if(!_gameController.Finished)
+            _move();
     }
 
     private void _move(){

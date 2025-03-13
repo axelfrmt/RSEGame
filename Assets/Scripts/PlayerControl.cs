@@ -9,9 +9,11 @@ public class PlayerControl : MonoBehaviour
     private bool _moving = false;
     private int _currentPosition = 1;
     private Vector3 _targetPosition;
+    private GameController _gameController;
 
     void Start()
     {
+        _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         _currentPosition = 0;
         _setTargetPosition(ReperesDeplacement[_currentPosition].position);
         transform.position = _targetPosition;
@@ -20,8 +22,10 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        _controls();
-        _moveToNextPosition();
+        if(!_gameController.Finished){
+            _controls();
+            _moveToNextPosition();
+        }
     }
 
     private void _controls(){

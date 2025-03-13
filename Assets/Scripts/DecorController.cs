@@ -8,17 +8,20 @@ public class DecorController : MonoBehaviour
     public List<GameObject> ChunksInstances = new List<GameObject>();
     
     private List<Transform> _chunksExemple = new List<Transform>();
+    private GameController _gameController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         _setPositionsTransforms();
     }   
 
     // Update is called once per frame
     void Update()
     {
-        _moving();
+        if(!_gameController.Finished)
+            _moving();
     }
 
     private void _setPositionsTransforms(){
