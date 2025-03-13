@@ -29,7 +29,7 @@ public class DecorController : MonoBehaviour
         }
         ChunksInstances.RemoveRange(0,ChunksInstances.Count);
         for(int i = 0; i < _chunksExemple.Count; i++){
-            ChunksInstances.Add(Instantiate(ChunksPrefab[Random.Range(0,ChunksPrefab.Count)],_chunksExemple[i].position,_chunksExemple[i].rotation));
+            ChunksInstances.Add(Instantiate(ChunksPrefab[Random.Range(0,ChunksPrefab.Count)],_chunksExemple[i].position,Quaternion.Euler(new Vector3(0,180,0))));
         }
     }
 

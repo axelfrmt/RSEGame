@@ -20,7 +20,10 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int PositiveScoreValue;
     [HideInInspector] public int NegativeScoreValue;
     [HideInInspector] public float WordSpeed;
-    [HideInInspector] public int Score = 0;
+    public int Score = 150;
+    public int PercentageToCritical;
+    public int ScoreMax = 300;
+    [HideInInspector] public float Timer = 0;
 
     private float _timer;
 
@@ -33,12 +36,37 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.C))
+        _updateTimer();
+        _difficultyManagement();
+    }
+
+    private void _updateTimer(){
+        _timer += Time.deltaTime;
+        if(_timer > Duration){
+            Debug.Log("FIN DE PARTIE");
+        }
+    }
+
+    private void _difficultyManagement(){
+        if(_timer/Duration <= 1f/3f)
             SwitchDifficulty(Difficulty.Easy);
-        else if(Input.GetKey(KeyCode.V))
+        else if(_timer/Duration > 1f/3f && _timer/Duration <= 2f/3f)
             SwitchDifficulty(Difficulty.Medium);
-        else if(Input.GetKey(KeyCode.B))
+        else if(_timer/Duration > 2f/3f)
             SwitchDifficulty(Difficulty.Hard);
+    }
+
+    public string GetInGameTime(float startHour, float endHour)
+    {
+        float totalMinutesInGame = (endHour - startHour) * 60f; // 9h = 540 minutes
+        float timeFactor = totalMinutesInGame / Duration;
+
+        float currentMinutes = startHour * 60f + _timer * timeFactor;
+        int roundedMinutes = (int)(currentMinutes / 5) * 5;
+        int hours = (int)(roundedMinutes / 60f);
+        int minutes = (int)(roundedMinutes % 60f);
+
+        return $"{hours:00}:{minutes:00}"; // Format HH:MM
     }
     
     public void SwitchDifficulty(Difficulty difficulty){
@@ -69,10 +97,17 @@ public class GameController : MonoBehaviour
 
     public void ApplyScore(int scoreToApply){
         Score += scoreToApply;
+
+        if(Score < 0)
+            Score = 0;
+
         UIManager.RefreshScore();
+
+        int percentage = Mathf.RoundToInt(((float)Score/ScoreMax)*100f);
+
         if(scoreToApply < 0)
             Camera.main.GetComponent<ScreenShake>().StartShake(0.2f, 0.2f);
-        if(Score < NegativeScoreValue*-1.5)
+        if(percentage < PercentageToCritical)
             ApplyCriticalPostProcess();
         else
             ReturnBasePostProcess();

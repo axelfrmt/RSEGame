@@ -31,13 +31,10 @@ public class Word : MonoBehaviour
     {
         if(other.CompareTag("Player"))
             Destroy(gameObject);
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.name == "DestroyZone"){
+        else if(other.name == "DestroyZone"){
             _gameController.ApplyScore(ScoreModifier);
             Destroy(gameObject);
         }
     }
+
 }
