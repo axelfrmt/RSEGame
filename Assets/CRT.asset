@@ -78,7 +78,7 @@ MonoBehaviour:
   screenOverscan: 0.5
   vignetteSize: 5.7
   vignetteSmooth: 2.8
-  vignetteRound: 94.6
+  vignetteRound: 88.1
   blur: 0.8
   bleed: 0
   smidge: 0

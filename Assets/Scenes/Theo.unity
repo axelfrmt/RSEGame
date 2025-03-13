@@ -1053,13 +1053,20 @@ MonoBehaviour:
   - {fileID: 1501856740}
   - {fileID: 1264013041}
   GoodWords:
-  - Communication
   - Respect
-  - Well-paid
+  - Good pay
+  - Stability
+  - Free time
+  - Teamwork
+  - Security
   BadWords:
-  - Racism
-  - Sexism
-  - Homophobia
+  - Overworked
+  - Stress
+  - Pressure
+  - Toxicity
+  - Neglect
+  - Discrimination
+  - Pollution
 --- !u!4 &685598707
 Transform:
   m_ObjectHideFlags: 0
