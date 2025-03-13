@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour
         }
         else if (character == "otherCharacter")
         {
-            otherCharacter.SetActive(character == "baseCharacter");
+            otherCharacter.SetActive(character == "otherCharacter");
             selectBaseCharacter.SetActive(false);
             selectOtherCharacter.SetActive(true);
         }
