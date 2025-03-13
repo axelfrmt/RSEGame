@@ -6,15 +6,15 @@ public class UImanager : MonoBehaviour
     [Header("--- REFERENCES ---")]
     public TextMeshProUGUI ScoreBox;
 
+    private GameController _gameController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void RefreshScore(){
+        ScoreBox.text = ""+_gameController.Score;
     }
 }

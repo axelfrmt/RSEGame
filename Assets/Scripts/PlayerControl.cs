@@ -6,9 +6,9 @@ public class PlayerControl : MonoBehaviour
     public List<Transform> ReperesDeplacement = new List<Transform>();
     public float Speed;
     
-    public bool _moving = false;
-    public int _currentPosition = 1;
-    public Vector3 _targetPosition;
+    private bool _moving = false;
+    private int _currentPosition = 1;
+    private Vector3 _targetPosition;
 
     void Start()
     {

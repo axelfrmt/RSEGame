@@ -8,13 +8,4 @@ public class Destroy : MonoBehaviour
     {
         _controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Word"))
-        {
-            _controller.ApplyScore(other.GetComponent<Word>().ScoreModifier);
-            Destroy(other.gameObject);
-        }
-    }
 }

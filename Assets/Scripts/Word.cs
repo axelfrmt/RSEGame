@@ -3,9 +3,20 @@ using UnityEngine;
 
 public class Word : MonoBehaviour
 {
-    public float Speed;
-    public int ScoreModifier;
+    [Header("--- REFERENCES ---")]
     public TextMeshProUGUI TextBox;
+
+    [Header("--- VALUES ---")]
+    public float Speed;
+
+    [HideInInspector] public int ScoreModifier;
+    private GameController _gameController;
+
+    void Start()
+    {
+        
+        _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+    }
 
     void Update()
     {
@@ -18,10 +29,14 @@ public class Word : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        GameController controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         if(other.CompareTag("Player"))
-        {
-            //controller.ApplyScore(ScoreModifier);
+            Destroy(gameObject);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.name == "DestroyZone"){
+            _gameController.ApplyScore(ScoreModifier);
             Destroy(gameObject);
         }
     }

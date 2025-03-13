@@ -37,7 +37,7 @@ public class DecorController : MonoBehaviour
         foreach(GameObject chunks in ChunksInstances){
             chunks.transform.position += new Vector3(-ScrollSpeed*Time.deltaTime, 0, 0);
         }
-        if(Vector3.Distance(ChunksInstances[0].transform.position, _chunksExemple[0].position) < 1f){
+        if(Vector3.Distance(ChunksInstances[0].transform.position, _chunksExemple[0].position-new Vector3(30,0,0)) < 0.05f){
             GameObject chunkToDestroy = ChunksInstances[0];
             ChunksInstances.RemoveAt(0);
             Destroy(chunkToDestroy);
