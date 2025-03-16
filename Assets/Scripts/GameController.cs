@@ -48,12 +48,21 @@ public class GameController : MonoBehaviour
         _timer += Time.deltaTime;
         if(_timer > Duration){
             Finished = true;
-            UIManager.SwitchToFinish();
+            bool win;
+            if((float)Score/ScoreMax < 0.5f)
+                win = false;
+            else
+                win = true;
+            UIManager.SwitchToFinish(win);
         }
     }
 
     public void Restart(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+
+    public void BackToMen(){
+        UIManager.GetComponent<Animator>().SetTrigger("Exit");
     }
 
     private void _difficultyManagement(){

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d3ddb029db89adc49a7ce20d12ce0f73
   - enabled: 1
+    path: Assets/Scenes/Menu_test.unity
+    guid: 925d99c017b60394d915b067474c6be2
+  - enabled: 1
     path: Assets/Scenes/Theo.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

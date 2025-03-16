@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour
@@ -7,7 +8,9 @@ public class UImanager : MonoBehaviour
     [Header("--- REFERENCES ---")]
     public GameObject HUD;
     public GameObject FINISH;
-
+    public TextMeshProUGUI TitleFinish;
+    public TextMeshProUGUI CommentFinish;
+    public TextMeshProUGUI PercentageFinish;
     public Image IconeTeam;
     public TextMeshProUGUI ScoreBox;
     public TextMeshProUGUI TimeBox;
@@ -29,9 +32,18 @@ public class UImanager : MonoBehaviour
         _displayTime();
     }
 
-    public void SwitchToFinish(){
+    public void SwitchToFinish(bool win){
         HUD.SetActive(false);
         FINISH.SetActive(true);
+
+        if(win){
+            TitleFinish.text = "VICTORY";
+            CommentFinish.text = "YOU KEPT A HEALTHY WORKPLACE!";
+        } else{
+            TitleFinish.text = "GAME OVER";
+            CommentFinish.text = "YOU'RE NOT VERY RSE...";
+        }
+        PercentageFinish.text = ScoreBox.text+" SATISFACTION";
     }
 
     public void RefreshScore(){
@@ -45,5 +57,8 @@ public class UImanager : MonoBehaviour
     private void _displayTime(){
         TimeBox.text = _gameController.GetInGameTime(StartHour, EndHour);
     }
-    
+
+    public void BackToMenu(){
+        SceneManager.LoadScene(0);
+    }
 }

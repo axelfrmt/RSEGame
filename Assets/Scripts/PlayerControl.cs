@@ -14,6 +14,14 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        if(GameObject.Find("ValuesToKeep").GetComponent<ValuesToKeep>().Gender == ValuesToKeep.GenderChosen.Man){
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(1).gameObject.SetActive(false);
+        } else {
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+
         _currentPosition = 0;
         _setTargetPosition(ReperesDeplacement[_currentPosition].position);
         transform.position = _targetPosition;

@@ -76,9 +76,9 @@ MonoBehaviour:
   pixelResolutionY: 200
   screenBend: 7.83
   screenOverscan: 0.5
-  vignetteSize: 5.7
-  vignetteSmooth: 2.8
-  vignetteRound: 88.1
+  vignetteSize: 5.8
+  vignetteSmooth: 2.89
+  vignetteRound: 67.7
   blur: 0.8
   bleed: 0
   smidge: 0
@@ -90,8 +90,8 @@ MonoBehaviour:
   noiseSize: 0
   noiseSpeed: 0
   noiseAlpha: 0
-  brightness: 1
-  contrast: 1
+  brightness: 1.1
+  contrast: 1.23
   gamma: 1
   red: 1
   green: 1
